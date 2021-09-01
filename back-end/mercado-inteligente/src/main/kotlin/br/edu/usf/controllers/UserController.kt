@@ -1,13 +1,15 @@
-package br.edu.usf
+package br.edu.usf.controllers
 
+import br.edu.usf.core.usecase.CreateUser
 import javax.ws.rs.GET
 import javax.ws.rs.Path
 import javax.ws.rs.Produces
 import javax.ws.rs.core.MediaType
 
-@Path("/hello")
-class ExampleResource {
-
+@Path("/users")
+class UserController(
+    val createUser: CreateUser
+) {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     fun hello() = "Hello RESTEasy"
