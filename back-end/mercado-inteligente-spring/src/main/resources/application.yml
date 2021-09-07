@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    username: root
+    password: fraudIntelligence
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mercadointeligente
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
