@@ -4,11 +4,16 @@ import br.edu.usf.gateways.UserGateway
 import br.edu.usf.gateways.database.repository.UserRepository
 import br.edu.usf.gateways.dto.UserDTO
 import javax.enterprise.context.ApplicationScoped
+import javax.enterprise.inject.Default
+import javax.inject.Inject
 
 @ApplicationScoped
-class UserGatewayDatabase(val userRepository: UserRepository) : UserGateway {
-    override fun create(user: UserDTO): UserDTO = userRepository.create(user)
+class UserGatewayDatabase : UserGateway {
+    @Inject
+    @field: Default
+    lateinit var userRepository: UserRepository
 
+    override fun create(user: UserDTO): UserDTO = userRepository.create(user)
 
     override fun update(id: Long, user: UserDTO) = userRepository.update(id, user)
 
@@ -19,6 +24,6 @@ class UserGatewayDatabase(val userRepository: UserRepository) : UserGateway {
     }
 
     override fun findAll(): List<UserDTO> {
-      return userRepository.findAll().list()
+        return userRepository.findAll().list()
     }
 }

@@ -4,11 +4,11 @@ quarkus:
   datasource:
     db-kind : mysql
     username : root
-    password : admin
+    password : fraudIntelligence
     jdbc:
       url : jdbc:mysql://localhost:3306/mercadointeligente
 
   # drop and create the database at startup (use `update` to only update the schema)
   hibernate-orm:
     database:
-      generation: drop-and-create
+      generation: update
