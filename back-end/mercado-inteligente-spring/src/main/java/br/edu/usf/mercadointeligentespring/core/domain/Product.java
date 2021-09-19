@@ -1,6 +1,5 @@
 package br.edu.usf.mercadointeligentespring.core.domain;
 
-import java.awt.Image;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

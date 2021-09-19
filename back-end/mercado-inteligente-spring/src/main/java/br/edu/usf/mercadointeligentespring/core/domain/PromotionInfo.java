@@ -2,15 +2,15 @@ package br.edu.usf.mercadointeligentespring.core.domain;
 
 import br.edu.usf.mercadointeligentespring.core.domain.enums.PromotionTargetTypeEnum;
 import java.util.List;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.experimental.Accessors;
 
 @Data
 @NoArgsConstructor
-@Accessors(chain = true)
+@Builder
 public abstract class PromotionInfo {
-    public String id;
+    public Long id;
     public String targetId;
     public PromotionTargetTypeEnum targetType;
     public List<Banner> banners;
