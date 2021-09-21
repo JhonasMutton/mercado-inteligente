@@ -10,12 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Product {
+public class CampaignPromotion {
     private Long id;
-    private String name;
-    private List<String> categories;
-    private Double price;
-    private Byte[] image;
-    private Long stock;
-    private Long sales;
+    private List<Promotion> promotions;
+    private PromotionInfo generalPromotionInfo;
 }
