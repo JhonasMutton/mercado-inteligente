@@ -32,7 +32,8 @@ public class PromotionInfoDTO {
     private List<DiscountDTO> discount;
     @ElementCollection
     private List<String> targetsProfiles;
-    private String salesLimit;
+    private Long salesLimit;
+    private Long sales;
     private String startDate;
     private String endDate;
 }
