@@ -11,8 +11,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class Promotion  {
-    public Long id;
-    public String targetId;
-    public PromotionTargetTypeEnum targetType;
-    public PromotionInfo promotionInfo;
+    private Long id;
+    private String targetId;
+    private PromotionTargetTypeEnum targetType;
+    private PromotionInfo promotionInfo;
 }
