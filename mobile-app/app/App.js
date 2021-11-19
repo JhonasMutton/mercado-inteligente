@@ -10,19 +10,26 @@ import CuponScreen from "./src/screens/CuponScreen";
 import FinderScreen from "./src/screens/FinderScreen";
 import HomeScreen from "./src/screens/HomeScreen";
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {Container, Image, SimpleGrid} from "native-base";
+import {Button, Container, Image, SimpleGrid} from "native-base";
+import { SearchBar } from 'react-native-elements';
 
 
 const App: () => Node = () => {
     const isDarkMode = useColorScheme() === 'dark';
     const Tab = createBottomTabNavigator();
-
+    const headerOpt = {
+        // headerTitle: props => <T {...props} />,
+        headerLeft: () => (
+            <Container style={{color: 'white', height: 50}}>
+                <Ionicons name='menu' size={40} style={{margin: 5}}/>
+            </Container>
+        ),
+    }
     return (
         <NativeBaseProvider>
             <NavigationContainer>
-                <Container style={{color: 'white', height: 50}}>
-                    <Ionicons name='menu' size={40} style={{margin: 5}}/>
-                </Container>
+
+
                 <Tab.Navigator
                     screenOptions={({route}) => ({
                         tabBarIcon: ({focused, color, size}) => {
@@ -61,11 +68,12 @@ const App: () => Node = () => {
                         tabBarActiveTintColor: 'green',
                         tabBarInactiveTintColor: 'gray',
                     })}>
-                    <Tab.Screen name="Home" component={HomeScreen}/>
-                    <Tab.Screen name="Cupons" component={CuponScreen}/>
-                    <Tab.Screen name="Finder" component={FinderScreen}/>
-                    <Tab.Screen name="List" component={ListScreen}/>
-                    <Tab.Screen name="Wallet" component={WalletScreen}/>
+
+                    <Tab.Screen name="Home" component={HomeScreen} options={headerOpt}/>
+                    <Tab.Screen name="Cupons" component={CuponScreen} options={headerOpt}/>
+                    <Tab.Screen name="Finder" component={FinderScreen} options={headerOpt}/>
+                    <Tab.Screen name="List" component={ListScreen} options={headerOpt}/>
+                    <Tab.Screen name="Wallet" component={WalletScreen} options={headerOpt}/>
                 </Tab.Navigator>
             </NavigationContainer>
         </NativeBaseProvider>
