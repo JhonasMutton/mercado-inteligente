@@ -9,6 +9,9 @@ export const colors = {
 
 export default StyleSheet.create({
     safeArea: {
+        display: "flex",
+        flexDirection: "column",
+        justifyContent:  "flex-start",
         flex: 1,
     },
     container: {

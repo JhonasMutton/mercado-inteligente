@@ -1,12 +1,10 @@
 import React, {Component} from 'react';
-import {Platform, View, ScrollView, Text, StatusBar, SafeAreaView} from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
+import {Platform, View} from 'react-native';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
-import {sliderWidth, itemWidth} from './styles/SliderEntry.style';
+import {itemWidth, sliderWidth} from './styles/SliderEntry.style';
 import SliderEntry from './components/SliderEntry';
 import styles, {colors} from './styles/index.style';
-import {ENTRIES1, ENTRIES2} from './static/entries';
-import {scrollInterpolators, animatedStyles} from './utils/animations';
+import {ENTRIES1} from './static/entries';
 
 const IS_ANDROID = Platform.OS === 'android';
 const SLIDER_1_FIRST_ITEM = 1;
@@ -72,16 +70,6 @@ export default class PromoCarousel extends Component {
     }
 
     render() {
-        return (
-            <View style={styles.container}>
-                <ScrollView
-                    style={styles.scrollview}
-                    scrollEventThrottle={200}
-                    directionalLockEnabled
-                >
-                    {this.main()}
-                </ScrollView>
-            </View>
-        );
+        return this.main();
     }
 }
