@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Image, StyleSheet, Text, View} from "react-native";
+import {Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {FunctionComponent} from "react";
 import {ImageContainer} from "./image";
 
@@ -78,7 +78,7 @@ const Product: FunctionComponent<ProductProps> = ({
                                                       oldPrice = 'R$ 9,90',
                                                       newPrice = 'R$ 7,60'
                                                   }) => {
-    return <View style={styles.container}>
+    return <TouchableOpacity style={styles.container}>
         <View style={styles.image}>
             <ImageContainer uri={imageUri}/>
         </View>
@@ -90,7 +90,7 @@ const Product: FunctionComponent<ProductProps> = ({
             <Text style={styles.newPrice}>{newPrice}</Text>
             <Text style={styles.oldPrice}>{oldPrice}</Text>
         </View>
-    </View>
+    </TouchableOpacity>
 
 }
 

@@ -6,6 +6,7 @@ import stylesCarousel from '../components/carousel/styles/index.style';
 import {ENTRIES1} from '../components/carousel/static/entries'
 import {SearchBar} from "react-native-elements";
 import {Product} from "../components/product";
+import {Category} from "../components/category";
 // const Container = styled.View`
 
 // `
@@ -39,6 +40,17 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderStyle: 'solid',
         paddingBottom: 10
+    },
+    category: {
+        margin: 4
+    },
+    products:{
+        display: "flex",
+        flexDirection: "row",
+        flexWrap: "wrap",
+        justifyContent: "space-between",
+        padding: 8,
+        overflow: "scroll"
     }
 
 });
@@ -47,34 +59,109 @@ const HomeScreen = () => {
     //Entries to be have illustrations
 
     return (
-        <SafeAreaView style={stylesCarousel.safeArea}>
-            <SearchBar containerStyle={styles.searchContainer} inputContainerStyle={styles.searchBar}/>
-            <PromoCarousel entries={ENTRIES1}/>
-            <View style={styles.promoSession}>
-                <Text> Exclusivas para você!</Text>
-                <ScrollView horizontal style={styles.promoContainer}>
-                    <View style={styles.product}>
-                        <Product/>
-                    </View>
-                    <View style={styles.product}>
-                        <Product/>
-                    </View>
-                    <View style={styles.product}>
-                        <Product/>
-                    </View>
-                    <View style={styles.product}>
-                        <Product/>
-                    </View>
-                    <View style={styles.product}>
-                        <Product/>
-                    </View>
-                    <View style={styles.product}>
-                        <Product/>
-                    </View>
-                </ScrollView>
-            </View>
+        <ScrollView>
+            <SafeAreaView style={stylesCarousel.safeArea}>
+                <SearchBar containerStyle={styles.searchContainer} inputContainerStyle={styles.searchBar}/>
+                <PromoCarousel entries={ENTRIES1}/>
+                <View style={styles.promoSession}>
+                    <Text> Exclusivas para você!</Text>
+                    <ScrollView horizontal style={styles.promoContainer}>
+                        <View style={styles.product}>
+                            <Product/>
+                        </View>
+                        <View style={styles.product}>
+                            <Product/>
+                        </View>
+                        <View style={styles.product}>
+                            <Product/>
+                        </View>
+                        <View style={styles.product}>
+                            <Product/>
+                        </View>
+                        <View style={styles.product}>
+                            <Product/>
+                        </View>
+                        <View style={styles.product}>
+                            <Product/>
+                        </View>
+                    </ScrollView>
+                </View>
+                <View>
+                    <ScrollView horizontal>
+                        <View style={styles.category}>
+                            <Category/>
+                        </View>
+                        <View style={styles.category}>
+                            <Category/>
+                        </View>
+                        <View style={styles.category}>
+                            <Category/>
+                        </View>
+                        <View style={styles.category}>
+                            <Category/>
+                        </View>
+                        <View style={styles.category}>
+                            <Category/>
+                        </View>
+                        <View style={styles.category}>
+                            <Category/>
+                        </View>
+                    </ScrollView>
+                </View>
 
-        </SafeAreaView>
+                <View style={styles.products}>
+                    <View style={styles.product}>
+                        <Product/>
+                    </View>
+                    <View style={styles.product}>
+                        <Product/>
+                    </View>
+                    <View style={styles.product}>
+                        <Product/>
+                    </View>
+                    <View style={styles.product}>
+                        <Product/>
+                    </View>
+                    <View style={styles.product}>
+                        <Product/>
+                    </View>
+                    <View style={styles.product}>
+                        <Product/>
+                    </View>
+                    <View style={styles.product}>
+                        <Product/>
+                    </View>
+                    <View style={styles.product}>
+                        <Product/>
+                    </View>
+                    <View style={styles.product}>
+                        <Product/>
+                    </View>
+                    <View style={styles.product}>
+                        <Product/>
+                    </View>
+                    <View style={styles.product}>
+                        <Product/>
+                    </View>
+                    <View style={styles.product}>
+                        <Product/>
+                    </View>
+                    <View style={styles.product}>
+                        <Product/>
+                    </View>
+                    <View style={styles.product}>
+                        <Product/>
+                    </View>
+                    <View style={styles.product}>
+                        <Product/>
+                    </View>
+                    <View style={styles.product}>
+                        <Product/>
+                    </View>
+
+                </View>
+            </SafeAreaView>
+        </ScrollView>
     );
 }
 
