@@ -27,12 +27,12 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(224,224,224,0.9)',
         borderRadius: 10
     },
-    promoContainer:{
+    promoContainer: {
         display: "flex",
         flexDirection: 'row',
         overflow: 'scroll',
     },
-    product:{
+    product: {
         margin: 3
     },
     promoSession: {
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     category: {
         margin: 4
     },
-    products:{
+    products: {
         display: "flex",
         flexDirection: "row",
         flexWrap: "wrap",
@@ -59,13 +59,14 @@ const HomeScreen = () => {
     //Entries to be have illustrations
 
     return (
-        <ScrollView>
-            <SafeAreaView style={stylesCarousel.safeArea}>
-                <SearchBar containerStyle={styles.searchContainer} inputContainerStyle={styles.searchBar}/>
+
+        <SafeAreaView style={stylesCarousel.safeArea}>
+            <SearchBar containerStyle={styles.searchContainer} inputContainerStyle={styles.searchBar}/>
+            <ScrollView>
                 <PromoCarousel entries={ENTRIES1}/>
                 <View style={styles.promoSession}>
                     <Text> Exclusivas para você!</Text>
-                    <ScrollView horizontal style={styles.promoContainer}>
+                    <ScrollView horizontal style={styles.promoContainer} showsHorizontalScrollIndicator={false}>
                         <View style={styles.product}>
                             <Product/>
                         </View>
@@ -87,7 +88,7 @@ const HomeScreen = () => {
                     </ScrollView>
                 </View>
                 <View>
-                    <ScrollView horizontal>
+                    <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                         <View style={styles.category}>
                             <Category/>
                         </View>
@@ -160,8 +161,9 @@ const HomeScreen = () => {
                     </View>
 
                 </View>
-            </SafeAreaView>
-        </ScrollView>
+            </ScrollView>
+        </SafeAreaView>
+
     );
 }
 
