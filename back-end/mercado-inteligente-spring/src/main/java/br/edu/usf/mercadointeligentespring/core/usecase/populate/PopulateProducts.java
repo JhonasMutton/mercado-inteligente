@@ -21,7 +21,7 @@ public class PopulateProducts {
     public void execute(List<String> categories, Integer size) {
         IntStream.range(0, size)
             .mapToObj(index ->
-                Product.builder().categories(categories).price(random.nextDouble()).name(randomString.nextString()).build()
+                Product.builder().categories(categories).price(random.doubles(1.0, 100.0).findFirst().orElse(1.0)).name(randomString.nextString()).build()
             ).forEach(createProduct::execute);
     }
 
