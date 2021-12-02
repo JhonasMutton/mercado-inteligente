@@ -22,6 +22,7 @@ import lombok.RequiredArgsConstructor;
 import net.bytebuddy.utility.RandomString;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -41,14 +42,14 @@ public class PopulateInteractions {
 
     // Perfis
     // 100 perfis com 200 usuários cada, que consomem pelo menos uma vez(1 a 10) 70% dos produtos de uma faixa de produtos aleatorios de 100 itens e interage pelo menos uma vez(1 a 5) com 30% desses itens. Dessa maneira se identificarmos os perfis, nosso algoritmo está correto
+    @Async
     public void execute() {
         Instant start = Instant.now();
         logger.info("Executando");
         IntStream.range(1, 101)
-            .parallel()
             .forEach(numPerfil -> {
                 logger.info("Executando perfil:" + numPerfil);
-                var productIds = random.ints(100, 1, 10000);
+                var productIds = random.ints(100, 1, 10000).boxed().collect(Collectors.toList());
 
                 var users = IntStream.range(1, 200).mapToObj(index -> {
                             logger.info("Criando user:" + index);
@@ -58,9 +59,9 @@ public class PopulateInteractions {
                     )
                     .collect(Collectors.toList());
 
-                users.parallelStream().forEach(user -> {
+                users.forEach(user -> {
                     logger.info("Para o user:" + user.getId());
-                    productIds.parallel().forEach(productId -> {
+                    productIds.forEach(productId -> {
                         logger.info("Para o produto:" + productId);
 
                         var product = findProductById.execute((long) productId);
@@ -70,7 +71,7 @@ public class PopulateInteractions {
                         if (random.nextInt(11) < 7) {
                             IntStream.range(1, buyRate).forEach(i -> {
                                     logger.info("Comprou produto:" + productId);
-                                    createInteraction.execute(Interaction.builder().product(product).isPromotional(random.nextInt(11) < 7).user(user).interaction(InteractionEnum.BUY).build())
+                                    createInteraction.execute(Interaction.builder().product(product).isPromotional(random.nextInt(11) < 7).user(user).interaction(InteractionEnum.BUY).build());
                                 }
                             );
                         }
@@ -89,7 +90,7 @@ public class PopulateInteractions {
                 // time passes
                 Instant end = Instant.now();
                 Duration timeElapsed = Duration.between(start, end);
-                logger.info("Acabou agora: " + timeElapsed.get(ChronoUnit.MINUTES));
+                logger.info("Acabou agora: " + timeElapsed.toString());
             });
     }
 }

@@ -19,10 +19,10 @@ public class PopulateProducts {
     private final Random random = new Random();
 
     public void execute(List<String> categories, Integer size) {
-        IntStream.range(0, size)
-            .mapToObj(index ->
-                Product.builder().categories(categories).price(random.doubles(1.0, 100.0).findFirst().orElse(1.0)).name(randomString.nextString()).build()
-            ).forEach(createProduct::execute);
+//        IntStream.range(0, size)
+//            .mapToObj(index ->
+//                Product.builder().categories(categories).price(random.doubles(1.0, 100.0).findFirst().orElse(1.0)).name(randomString.nextString()).build()
+//            ).forEach(createProduct::execute);
     }
 
 }

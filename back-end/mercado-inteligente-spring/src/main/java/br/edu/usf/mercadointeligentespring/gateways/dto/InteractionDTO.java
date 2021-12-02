@@ -22,11 +22,11 @@ public class InteractionDTO {
     @Id
     @GeneratedValue
     private Long id;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private UserDTO user;
     @Enumerated
     private InteractionEnum interaction;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private ProductDTO product;
     private Boolean isPromotional;
     @CreatedDate

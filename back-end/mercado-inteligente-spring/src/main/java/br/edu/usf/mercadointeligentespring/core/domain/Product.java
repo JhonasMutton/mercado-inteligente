@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class Product {
     private Long id;
     private String name;
-    private List<String> categories;
+//    private List<String> categories;
     private Double price;
     private Byte[] image;
     private Long stock;
