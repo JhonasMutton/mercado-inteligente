@@ -3,6 +3,7 @@ package br.edu.usf.mercadointeligentespring.gateways.dto;
 import java.time.LocalDateTime;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -24,11 +25,11 @@ public class InteractionDTO {
     private Long id;
     @ManyToOne
     private UserDTO user;
-    @Enumerated
+    @Enumerated(value = EnumType.STRING)
     private InteractionEnum interaction;
     @ManyToOne
     private ProductDTO product;
-    private Boolean isPromotional;
+    private boolean isPromotional;
     @CreatedDate
     private LocalDateTime time;
 }
