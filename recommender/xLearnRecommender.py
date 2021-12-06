@@ -1,10 +1,12 @@
 import pandas as pd
 import tensorflow as tf
 import xlearn as xl
+import numpy as np
 from sqlalchemy import create_engine
 
 tf.get_logger().setLevel('ERROR')  # only show error messages
 from sklearn.model_selection import train_test_split
+
 
 def getData():
     db_connection_str = 'mysql+pymysql://root:fraudIntelligence@localhost:3306/mercadointeligente'
@@ -71,36 +73,31 @@ def convert_to_ffm(df, type, numerics, categories, features):
 
 
 if __name__ == '__main__':
-    rawData= getData()
+    rawData = getData()
+
+    affinities = [0, 4, 8, 16, 32, 64, np.inf]
+    names = ['<4', '4-8', '8-16', '16-32', '32-64', '64+']
+
+    rawData['affinity_range'] = pd.cut(rawData['afinity'], affinities, labels=names)
+
     print(rawData)
     X_train, X_test = train_test_split(rawData, test_size=0.3, random_state=5)
 
-    convert_to_ffm(X_train, 'Train', ['afinity'], ['category'], ['product_id', 'gender', 'user_id'])
-    convert_to_ffm(X_test,
-                   'Test',
-                   ['afinity'], ['category'], ['product_id', 'gender', 'user_id'])
+    convert_to_ffm(X_train, 'Train', [], ['category', 'affinity_range', 'product_id', 'gender', 'user_id'], [])
+    convert_to_ffm(X_test, 'Test', [], ['category', 'affinity_range', 'product_id', 'gender', 'user_id'], [])
 
     ffm_model = xl.create_ffm()
-
     ffm_model.setTrain("train_ffm.txt")
-
-    ffm_model.setPreModel('./model.out')
-
     param = {'task': 'binary',
              'lr': 0.2,
              'lambda': 0.002,
              'metric': 'acc'}
 
-    # Start to train
-    # The trained model will be stored in model.out
     ffm_model.fit(param, './model.out')
-
     ffm_model.cv(param)
 
-    # Prediction task
-    ffm_model.setTest("test_ffm.txt")  # Test data  Dados que eu quero verificar, insiro os produtos em promoção e vejo se ele compraria
-    ffm_model.setSigmoid()  # Convert output to 0-1
-
-    # Start to predict
-    # The output result will be stored in output.txt
+    ffm_model.setTest(
+        "test_ffm.txt")
+    ffm_model.setSigmoid()
     ffm_model.predict("./model.out", "./output.txt")
+
